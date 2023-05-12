@@ -23,13 +23,13 @@ function menu(): void
         $inputOptions = new InputMenu('Agora digite a opção desejada: ');
         $answer = ucfirst($inputOptions->ask());
 
-        if (trim(ucfirst($answer)) == 'Insert') {
+        if (trim($answer) == 'Insert') {
             insertTask();
-        } elseif (trim(ucfirst($answer)) == 'Remove') {
+        } elseif (trim($answer) == 'Remove') {
             removeTask();
-        } elseif (trim(ucfirst($answer)) == 'Update') {
+        } elseif (trim($answer) == 'Update') {
             updateTask();
-        } elseif (trim(ucfirst($answer)) == 'List') {
+        } elseif (trim($answer) == 'List') {
             listTask();
         } elseif ($answer == 0) {
             exit();
