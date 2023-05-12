@@ -37,12 +37,17 @@ class ComposerStaticInit345b2e95b7ef01a4d24b3778fe4f9e72
             'Symfony\\Component\\Dotenv\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
+            'Seld\\CliPrompt\\' => 15,
         ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+        ),
+        'L' => 
+        array (
+            'League\\CLImate\\' => 15,
         ),
         'D' => 
         array (
@@ -60,6 +65,7 @@ class ComposerStaticInit345b2e95b7ef01a4d24b3778fe4f9e72
         ),
         'B' => 
         array (
+            'Brunammsa\\Inputzvei\\' => 20,
             'Bruna\\TodoList\\' => 15,
         ),
     );
@@ -129,6 +135,10 @@ class ComposerStaticInit345b2e95b7ef01a4d24b3778fe4f9e72
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
         ),
+        'Seld\\CliPrompt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/seld/cli-prompt/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
@@ -140,6 +150,10 @@ class ComposerStaticInit345b2e95b7ef01a4d24b3778fe4f9e72
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'League\\CLImate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/climate/src',
         ),
         'Doctrine\\Persistence\\' => 
         array (
@@ -183,8 +197,12 @@ class ComposerStaticInit345b2e95b7ef01a4d24b3778fe4f9e72
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            1 => __DIR__ . '/..' . '/doctrine/common/src',
+            0 => __DIR__ . '/..' . '/doctrine/common/src',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
+        ),
+        'Brunammsa\\Inputzvei\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/brunammsa/inputzvei/src',
         ),
         'Bruna\\TodoList\\' => 
         array (

@@ -1,0 +1,19 @@
+{
+    "name": "brunammsa/inputzvei",
+    "description": "facilitando validações em projetos CLI",
+    "type": "library",
+    "require": {
+        "league/climate": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brunammsa\\Inputzvei\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bruna",
+            "email": "brunamelo.sa@gmail.com"
+        }
+    ]
+}

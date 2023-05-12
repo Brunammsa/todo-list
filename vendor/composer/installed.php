@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bruna/todo-list',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '75ec0c35d54ac9bbb762ad5666c19ebf827ba808',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,11 +11,20 @@
     ),
     'versions' => array(
         'bruna/todo-list' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '75ec0c35d54ac9bbb762ad5666c19ebf827ba808',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'brunammsa/inputzvei' => array(
+            'pretty_version' => 'v1.0.0',
+            'version' => '1.0.0.0',
+            'reference' => '72e73ac0512075f80ea54f9771085f29602e2ec7',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../brunammsa/inputzvei',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -127,6 +136,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'league/climate' => array(
+            'pretty_version' => '3.8.2',
+            'version' => '3.8.2.0',
+            'reference' => 'a785a3ac8f584eed4abd45e4e16fe64c46659a28',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../league/climate',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'psr/cache' => array(
             'pretty_version' => '2.0.0',
             'version' => '2.0.0.0',
@@ -171,6 +189,15 @@
             'provided' => array(
                 0 => '1.0|2.0',
             ),
+        ),
+        'seld/cli-prompt' => array(
+            'pretty_version' => '1.0.4',
+            'version' => '1.0.4.0',
+            'reference' => 'b8dfcf02094b8c03b40322c229493bb2884423c5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../seld/cli-prompt',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/cache' => array(
             'pretty_version' => 'v5.4.23',
