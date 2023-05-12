@@ -2,14 +2,16 @@
 
 use Bruna\TodoList\ConnectionSql\ConnectionCreator;
 use Bruna\TodoList\Entities\Tasks;
-use Bruna\TodoList\Entities\TodoList;
 
 require_once __DIR__ . './../vendor/autoload.php';
 
 $entityManager = ConnectionCreator::createEntityManager();
 
-$task = new TodoList();
-$task->addTask(new Tasks($argv[1]));
+$taskRepository = $entityManager->getRepository(Tasks::class);
+
+$task = $taskRepository->find($argv[1]);
+$task->tasks = $argv[2];
+
 
 $entityManager->persist($task);
 $entityManager->flush();

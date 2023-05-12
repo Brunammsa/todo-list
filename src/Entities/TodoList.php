@@ -19,7 +19,8 @@ class TodoList
     #[OneToMany(targetEntity: Tasks::class, mappedBy: 'todoList', cascade: ['persist', 'remove'])]
     private Collection $tasks;
 
-    public function __construct()
+    public function __construct(
+    )
     {
         $this->tasks = new ArrayCollection();
     }
@@ -29,13 +30,9 @@ class TodoList
         return $this->tasks;
     }
 
-    public function addTask(Tasks $task): void
+    public function addTask(Tasks $tasks): void
     {
-
-        if ($this->tasks->contains($task)) {
-            return;
-        }
-        $this->tasks->add($task);
-        $task->setTodoList($this);
+        $this->tasks->add($tasks);
+        $tasks->setTodoList($this);
     }
 }

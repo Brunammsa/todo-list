@@ -15,10 +15,10 @@ class Tasks
     public int $id;
 
     #[ManyToOne(targetEntity: TodoList::class, inversedBy: 'tasks')]
-    public readonly string $todoList;
+    public readonly TodoList $todoList;
 
     public function __construct(
-        #[Column]
+        #[Column(nullable:false)]
         public string $tasks
     ) {
     }
