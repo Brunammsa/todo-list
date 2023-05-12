@@ -2,23 +2,23 @@
     "packages": [
         {
             "name": "brunammsa/inputzvei",
-            "version": "v1.0.0",
-            "version_normalized": "1.0.0.0",
+            "version": "v1.0.2",
+            "version_normalized": "1.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Brunammsa/Inputz-vei.git",
-                "reference": "72e73ac0512075f80ea54f9771085f29602e2ec7"
+                "reference": "bb95059c3e1016383547649f4c5502e169c7d52e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Brunammsa/Inputz-vei/zipball/72e73ac0512075f80ea54f9771085f29602e2ec7",
-                "reference": "72e73ac0512075f80ea54f9771085f29602e2ec7",
+                "url": "https://api.github.com/repos/Brunammsa/Inputz-vei/zipball/bb95059c3e1016383547649f4c5502e169c7d52e",
+                "reference": "bb95059c3e1016383547649f4c5502e169c7d52e",
                 "shasum": ""
             },
             "require": {
                 "league/climate": "^3.8"
             },
-            "time": "2023-04-05T19:57:55+00:00",
+            "time": "2023-05-12T20:48:48+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -36,7 +36,7 @@
             "description": "facilitando validações em projetos CLI",
             "support": {
                 "issues": "https://github.com/Brunammsa/Inputz-vei/issues",
-                "source": "https://github.com/Brunammsa/Inputz-vei/tree/v1.0.0"
+                "source": "https://github.com/Brunammsa/Inputz-vei/tree/v1.0.2"
             },
             "install-path": "../brunammsa/inputzvei"
         },

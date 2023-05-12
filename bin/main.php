@@ -18,23 +18,18 @@ function menu(): void
     $isValid = true;
 
     while ($isValid) {
-        echo "Opções válidas
-        - Insert
-        - Remove
-        - Update
-        - List 
-        - 0 " . PHP_EOL;
+        echo "Opções válidas\n- Insert\n- Remove\n- Update\n- List \n- 0 " . PHP_EOL;
 
         $inputOptions = new InputMenu('Agora digite a opção desejada: ');
-        $answer = $inputOptions->ask();
+        $answer = ucfirst($inputOptions->ask());
 
-        if (ucfirst($answer) == 'Insert') {
+        if (trim(ucfirst($answer)) == 'Insert') {
             insertTask();
-        } elseif (ucfirst($answer) == 'Remove') {
+        } elseif (trim(ucfirst($answer)) == 'Remove') {
             removeTask();
-        } elseif (ucfirst($answer) == 'Update') {
+        } elseif (trim(ucfirst($answer)) == 'Update') {
             updateTask();
-        } elseif (ucfirst($answer) == 'List') {
+        } elseif (trim(ucfirst($answer)) == 'List') {
             listTask();
         } elseif ($answer == 0) {
             exit();
@@ -70,7 +65,6 @@ function updateTask(): void
 
     $answerAtt = readline("Digite a tarefa atualizada");
     $task->tasks = $answerAtt;
-
 
     $entityManager->persist($task);
     $entityManager->flush();
