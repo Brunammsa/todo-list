@@ -2,13 +2,14 @@
 
 namespace Bruna\TodoList\Entities;
 
+use Bruna\TodoList\Repository\TasksRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 
-#[Entity]
+#[Entity(TasksRepository::class)]
 class Tasks
 {
     #[Id, GeneratedValue, Column]
