@@ -16,7 +16,7 @@ class TodoList
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[OneToMany(targetEntity: Tasks::class, mappedBy: 'todoList', cascade: ['persist', 'remove'])]
+    #[OneToMany(targetEntity: Tasks::class, mappedBy: 'todoList', cascade: ['persist'])]
     private Collection $tasks;
 
     public function __construct(

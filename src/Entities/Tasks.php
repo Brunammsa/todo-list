@@ -20,7 +20,10 @@ class Tasks
 
     public function __construct(
         #[Column(nullable:false)]
-        public string $tasks
+        public string $tasks,
+
+        #[Column(nullable:true)]
+        public int $deleted_at
     ) {
     }
 

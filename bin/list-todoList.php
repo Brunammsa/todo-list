@@ -7,7 +7,12 @@ require_once __DIR__ . './../vendor/autoload.php';
 
 $entityManager = ConnectionCreator::createEntityManager();
 
-$taskRepository = $entityManager->getRepository(Tasks::class)->findAll();
+$taskRepository = $entityManager
+    ->getRepository(Tasks::class)
+    ->findBy([
+        'deleted_at' => null
+    ]);
+
 #$tasksList = $taskRepository->todoTasks();
 
 foreach ($taskRepository as $tasks) {
