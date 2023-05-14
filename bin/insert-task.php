@@ -9,7 +9,10 @@ require_once __DIR__ . './../vendor/autoload.php';
 $entityManager = ConnectionCreator::createEntityManager();
 
 $task = new TodoList();
-$task->addTask(new Tasks($argv[1]));
 
+$answer = readline("Digite a tarefa a ser adicionada: ");
+$deletedTask = null;
+$conclusiontask = 'NÃO';
+$task->addTask(new Tasks($answer, $deletedTask, $conclusiontask));
 $entityManager->persist($task);
 $entityManager->flush();

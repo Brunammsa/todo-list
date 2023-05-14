@@ -23,7 +23,10 @@ class Tasks
         public string $tasks,
 
         #[Column(nullable:true)]
-        public int $deleted_at
+        private $deteledAt,
+
+        #[Column]
+        public string $doneTask
     ) {
     }
 

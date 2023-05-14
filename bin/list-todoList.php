@@ -13,8 +13,8 @@ $taskRepository = $entityManager
         'deleted_at' => null
     ]);
 
-#$tasksList = $taskRepository->todoTasks();
+echo "------------- ID       -       TAREFA -       CONCLUÍDO -------------" . PHP_EOL;
 
 foreach ($taskRepository as $tasks) {
-    echo $tasks->tasks . PHP_EOL;
+    echo $tasks->id . " - " . $tasks->tasks . " - " . $tasks->doneTask . PHP_EOL;
 }
