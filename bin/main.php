@@ -3,6 +3,7 @@
 require_once __DIR__ . './../vendor/autoload.php';
 
 use Brunammsa\Inputzvei\InputMenu;
+use Brunammsa\Inputzvei\InputNumber;
 use Bruna\TodoList\ConnectionSql\ConnectionCreator;
 use Bruna\TodoList\Entities\Tasks;
 use Bruna\TodoList\Entities\TodoList;
@@ -20,7 +21,7 @@ function menu(): void
     while ($isValid) {
         echo "Opções válidas\n- Insert\n- Remove\n- Update\n- List \n- 0 " . PHP_EOL;
 
-        $inputOptions = new InputMenu('Agora digite a opção desejada: ');
+        $inputOptions = new InputMenu('Digite a opção desejada: ');
         $answer = ucfirst($inputOptions->ask());
 
         if (trim($answer) == 'Insert') {
@@ -52,6 +53,8 @@ function insertTask(): void
 
     $entityManager->persist($task);
     $entityManager->flush();
+
+    echo "A tarefa '" . $answer . "' foi adicionada" . PHP_EOL . PHP_EOL;
 }
 
 function removeTask(): void
@@ -72,6 +75,7 @@ function removeTask(): void
 
     if (trim((strtolower($confirmation))) == 'sim') {
         $taskRepository->doneTask = 'SIM';
+        $taskRepository->deletedAt = 1;
     }
 }
 
@@ -81,21 +85,26 @@ function updateTask(): void
 
     $taskRepository = $entityManager->getRepository(Tasks::class);
 
-    echo "Opções válidas:\n- TAREFA\n- CONCLUSÃO" . PHP_EOL;
+    echo "Opções válidas:\n- 1 -> TAREFA\n- 2 -> CONCLUSÃO" . PHP_EOL;
+    $inputNumb = new InputNumber("Digite o número da opção desejada: ");
+    $answer = $inputNumb->ask();
 
-    $answerOption = readline("Digite a opção que gostaria de atualizar: ");
     $answerId = readline("Agora digite o ID da tarefa desejada: ");
+    $task = $taskRepository->find($answerId);
 
-    if (trim(strtoupper($answerOption)) == 'TAREFA') {
+    if (is_null($task)) {
+        echo "ID inexistente" . PHP_EOL;
+        exit;
+    }
+
+    if ($answer == 1) {
         $newTask = readline("Digite o novo conteúdo da tarefa aqui -> ");
 
-        $task = $taskRepository->find($answerId);
         $task->tasks = $newTask;
-    } elseif (trim(strtoupper($answerOption)) == 'CONCLUSÃO') {
+    } elseif ($answer == 2) {
         $taskConclusion = readline("Se deseja marcar a tarefa como concluída, digite SIM, ou NÃO para manter em aberto: ");
 
-        $task = $taskRepository->find($answerId);
-        $task->doneTaks = $$taskConclusion;
+        $task->doneTask = strtoupper($taskConclusion);
     }
 
     $entityManager->persist($task);
@@ -107,17 +116,23 @@ function listTask(): void
     $entityManager = ConnectionCreator::createEntityManager();
 
     $taskRepository = $entityManager->getRepository(Tasks::class);
-    $taskRepository = $entityManager
+    $taskGetRepository = $entityManager
         ->getRepository(Tasks::class)
         ->findBy([
-            'deleted_at' => null
+            'deletedAt' => null
         ]);
 
-    echo "------------- ID       -       TAREFA -       CONCLUÍDO -------------" . PHP_EOL;
+    echo "-- ID - TAREFA - CONCLUÍDO --" . PHP_EOL;
 
-    foreach ($taskRepository as $tasks) {
+    foreach ($taskGetRepository as $tasks) {
         echo $tasks->id . " - " . $tasks->tasks . " - " . $tasks->doneTask . PHP_EOL;
     }
+
+    echo PHP_EOL;
+    echo "Número total de tarefas: " . $taskRepository->count([]) . PHP_EOL;
+    echo "Número de tarefas concluídas: " . $taskRepository->count(['doneTask' => 'SIM']) . PHP_EOL;
+
+    echo PHP_EOL;
 }
 
 main();

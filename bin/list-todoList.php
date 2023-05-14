@@ -10,10 +10,10 @@ $entityManager = ConnectionCreator::createEntityManager();
 $taskRepository = $entityManager
     ->getRepository(Tasks::class)
     ->findBy([
-        'deleted_at' => null
+        'deletedAt' => null
     ]);
 
-echo "------------- ID       -       TAREFA -       CONCLUÍDO -------------" . PHP_EOL;
+echo "-- ID - TAREFA - CONCLUÍDO --" . PHP_EOL;
 
 foreach ($taskRepository as $tasks) {
     echo $tasks->id . " - " . $tasks->tasks . " - " . $tasks->doneTask . PHP_EOL;
