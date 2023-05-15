@@ -57,13 +57,14 @@ function removeTask(): void
 {
     $entityManager = ConnectionCreator::createEntityManager();
 
-    $taskId = readline("Agora digite o ID da tarefa que deseja excluir: ");
+    $taskId = readline("Digite o ID da tarefa que deseja excluir: ");
 
     $taskRepository = $entityManager->getRepository(Tasks::class);
     $task = $taskRepository->find($taskId);
 
     if (!$task) {
         echo "Tarefa não encontrada" . PHP_EOL;
+        return;
     }
 
     $confirmation = readline("tem certeza de que deseja excluir esta tarefa? ");
@@ -98,8 +99,8 @@ function updateTask(): void
 
         echo "Tarefa de ID  " . $answerId . " foi alterada para '" . $newTask . "'" . PHP_EOL;
     } elseif ($answer == 2) {
-        $task->done = true;
-        echo "Tarefa marcada como concluída" . PHP_EOL;
+        $task->done = !$task->done;
+        echo "Tarefa alterada" . PHP_EOL;
     }
 
     $entityManager->persist($task);
