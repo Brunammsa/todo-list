@@ -20,20 +20,18 @@ $task = $taskRepository->find($answerId);
 
 if (is_null($task)) {
     echo "ID inexistente" . PHP_EOL;
-    exit;
+    main();
 }
 
 if ($answer == 1) {
     $newTask = readline("Digite o novo conteúdo da tarefa aqui -> ");
+    $task->name = $newTask;
 
-    $task->tasks = $newTask;
+    echo "Tarefa de ID  ". $answerId . " foi alterada para '" . $newTask . "'" . PHP_EOL;
 } elseif ($answer == 2) {
-    $taskConclusion = readline("Se deseja marcar a tarefa como concluída, digite SIM, ou NÃO para manter em aberto: ");
-
-    $task->doneTask = strtoupper($taskConclusion);
-
+    $task->done = true;
+    echo "Tarefa marcada como concluída" . PHP_EOL;
 }
 
 $entityManager->persist($task);
 $entityManager->flush();
-
