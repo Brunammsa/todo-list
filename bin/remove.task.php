@@ -2,23 +2,35 @@
 
 use Bruna\TodoList\ConnectionSql\ConnectionCreator;
 use Bruna\TodoList\Entities\Tasks;
+use Brunammsa\Inputzvei\InputMenu;
+use Brunammsa\Inputzvei\InputNumber;
+
 
 require_once __DIR__ . './../vendor/autoload.php';
 
 $entityManager = ConnectionCreator::createEntityManager();
 
-$taskId = readline("Agora digite o ID da tarefa que deseja excluir: ");
+$inputId = new InputNumber('Digite o ID da tarefa desejada:');
+$answerId = $inputId->ask();
 
 $taskRepository = $entityManager->getRepository(Tasks::class);
-$task = $taskRepository->find($taskId);
+$task = $taskRepository->find(intval($answerId));
 
 if (!$task) {
     echo "Tarefa não encontrada" . PHP_EOL;
+    return;
 }
 
-$confirmation = readline("tem certeza de que deseja excluir esta tarefa? ");
+$input = new InputMenu("Se tem certeza de que deseja excluir a tarefa, digite a numeração referente a opção:");
+$input->addOption('1', 'Sim')->addOption('2','Cancelar');
+$option = $input->askOption();
 
-if (trim((strtolower($confirmation))) == 'sim') {
+if ($option == 'Sim') {
     $task->deletedAt = new DateTime();
     $entityManager->flush();
+
+    echo 'Tarefa removida' . PHP_EOL;
+} elseif ($option == 'Cancelar') {
+    echo 'Operação remove cancelada' . PHP_EOL;
+    return;
 }

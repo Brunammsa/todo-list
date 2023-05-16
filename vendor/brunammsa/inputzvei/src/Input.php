@@ -9,8 +9,13 @@ abstract class Input
     public function __construct(protected readonly string $question)
     {
     }
-
+    
     abstract protected function validate(string $answer): bool;
+
+    protected function question():string
+    {
+        return $this->question;
+    }
 
     protected function feedBackMessage(): string
     {
@@ -20,11 +25,11 @@ abstract class Input
     public function ask(): string
     {
         $climate = new CLImate;
-        
-        while(true) {
-            $answer = trim(readline($this->question));
 
-            if($this->validate($answer)) {
+        while (true) {
+            $answer = trim(readline($this->question()));
+
+            if ($this->validate($answer)) {
                 return $answer;
             }
             $climate->red($this->feedBackMessage());

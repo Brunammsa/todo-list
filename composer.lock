@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "brunammsa/inputzvei",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Brunammsa/Inputz-vei.git",
-                "reference": "bb95059c3e1016383547649f4c5502e169c7d52e"
+                "reference": "aceabd3023b4b42ab4fd23fccf36d317fae35cda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Brunammsa/Inputz-vei/zipball/bb95059c3e1016383547649f4c5502e169c7d52e",
-                "reference": "bb95059c3e1016383547649f4c5502e169c7d52e",
+                "url": "https://api.github.com/repos/Brunammsa/Inputz-vei/zipball/aceabd3023b4b42ab4fd23fccf36d317fae35cda",
+                "reference": "aceabd3023b4b42ab4fd23fccf36d317fae35cda",
                 "shasum": ""
             },
             "require": {
@@ -39,9 +39,9 @@
             "description": "facilitando validações em projetos CLI",
             "support": {
                 "issues": "https://github.com/Brunammsa/Inputz-vei/issues",
-                "source": "https://github.com/Brunammsa/Inputz-vei/tree/v1.0.2"
+                "source": "https://github.com/Brunammsa/Inputz-vei/tree/v1.0.3"
             },
-            "time": "2023-05-12T20:48:48+00:00"
+            "time": "2023-05-15T22:35:21+00:00"
         },
         {
             "name": "doctrine/cache",

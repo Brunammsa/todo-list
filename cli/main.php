@@ -18,20 +18,19 @@ function menu(): void
     $isValid = true;
 
     while ($isValid) {
-        echo "Opções válidas\n- Insert\n- Remove\n- Update\n- List \n- 0 para finalizar" . PHP_EOL;
+        $input = new InputMenu('Digite a numeração referente a opção desejada:');
+        $input->addOption('1', 'Insert')->addOption('2', 'Remove')->addOption('3', 'Update')->addOption('4', 'List')->addOption('0', 'Encerrar');
+        $option = $input->askOption();
 
-        $inputOptions = new InputMenu('Digite a opção desejada: ');
-        $answer = ucfirst($inputOptions->ask());
-
-        if (trim($answer) == 'Insert') {
+        if ($option == 'Insert') {
             insertTask();
-        } elseif (trim($answer) == 'Remove') {
+        } elseif ($option == 'Remove') {
             removeTask();
-        } elseif (trim($answer) == 'Update') {
+        } elseif ($option == 'Update') {
             updateTask();
-        } elseif (trim($answer) == 'List') {
+        } elseif ($option == 'List') {
             listTask();
-        } elseif ($answer == 0) {
+        } elseif ($option == 'Encerrar') {
             exit();
         }
     }
@@ -57,21 +56,29 @@ function removeTask(): void
 {
     $entityManager = ConnectionCreator::createEntityManager();
 
-    $taskId = readline("Digite o ID da tarefa que deseja excluir: ");
+    $inputId = new InputNumber('Digite o ID da tarefa desejada:');
+    $answerId = $inputId->ask();
 
     $taskRepository = $entityManager->getRepository(Tasks::class);
-    $task = $taskRepository->find($taskId);
-
+    $task = $taskRepository->find(intval($answerId));
+        
     if (!$task) {
         echo "Tarefa não encontrada" . PHP_EOL;
         return;
     }
-
-    $confirmation = readline("tem certeza de que deseja excluir esta tarefa? ");
-
-    if (trim((strtolower($confirmation))) == 'sim') {
+    
+    $input = new InputMenu("Se tem certeza de que deseja excluir a tarefa, digite a numeração referente a opção:");
+    $input->addOption('1', 'Sim')->addOption('2','Cancelar');
+    $option = $input->askOption();
+    
+    if ($option == 'Sim') {
         $task->deletedAt = new DateTime();
         $entityManager->flush();
+    
+        echo 'Tarefa removida' . PHP_EOL;
+    } elseif ($option == 'Cancelar') {
+        echo 'Operação remove cancelada' . PHP_EOL;
+        return;
     }
 }
 
@@ -80,29 +87,31 @@ function updateTask(): void
     $entityManager = ConnectionCreator::createEntityManager();
 
     $taskRepository = $entityManager->getRepository(Tasks::class);
-
-    echo "Opções válidas:\n- 1 -> TAREFA\n- 2 -> CONCLUSÃO" . PHP_EOL;
-    $inputNumb = new InputNumber("Digite o número da opção desejada: ");
-    $answer = $inputNumb->ask();
-
-    $answerId = readline("Agora digite o ID da tarefa desejada: ");
-    $task = $taskRepository->find($answerId);
-
+    
+    $inputOption = new InputMenu('Digite o número da opção desejada:');
+    $inputOption->addOption('1', 'Tarefa')->addOption('2', 'Conclusão');
+    $option = $inputOption->askOption();
+    
+    $inputId = new InputNumber('Digite o ID da tarefa desejada:');
+    $answerId = $inputId->ask();
+    
+    $task = $taskRepository->find(intval($answerId));
+    
     if (is_null($task)) {
         echo "ID inexistente" . PHP_EOL;
-        main();
+        return;
     }
-
-    if ($answer == 1) {
+    
+    if ($option == 'Tarefa') {
         $newTask = readline("Digite o novo conteúdo da tarefa aqui -> ");
         $task->name = $newTask;
-
+    
         echo "Tarefa de ID  " . $answerId . " foi alterada para '" . $newTask . "'" . PHP_EOL;
-    } elseif ($answer == 2) {
+    } elseif ($option == 'Conclusão') {
         $task->done = !$task->done;
         echo "Tarefa alterada" . PHP_EOL;
     }
-
+    
     $entityManager->persist($task);
     $entityManager->flush();
 }
@@ -127,7 +136,7 @@ function listTask(): void
     }
 
     echo PHP_EOL;
-    echo "Número total de tarefas: " . $taskRepository->count(['deletedAt' => null] ) . PHP_EOL;
+    echo "Número total de tarefas: " . $taskRepository->count(['deletedAt' => null]) . PHP_EOL;
     echo "Número de tarefas concluídas: " . $taskRepository->count(['done' => true, 'deletedAt' => null]) . PHP_EOL;
 
     echo PHP_EOL;
